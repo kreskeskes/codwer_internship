@@ -1,0 +1,7 @@
+C:\Users\admin\Desktop\codwer_internship\Language_Basics_3\Language_Basics_3\bin\Debug\Language_Basics_3.exe.config
+C:\Users\admin\Desktop\codwer_internship\Language_Basics_3\Language_Basics_3\bin\Debug\Language_Basics_3.exe
+C:\Users\admin\Desktop\codwer_internship\Language_Basics_3\Language_Basics_3\bin\Debug\Language_Basics_3.pdb
+C:\Users\admin\Desktop\codwer_internship\Language_Basics_3\Language_Basics_3\obj\Debug\Language_Basics_3.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\codwer_internship\Language_Basics_3\Language_Basics_3\obj\Debug\Language_Basics_3.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\codwer_internship\Language_Basics_3\Language_Basics_3\obj\Debug\Language_Basics_3.exe
+C:\Users\admin\Desktop\codwer_internship\Language_Basics_3\Language_Basics_3\obj\Debug\Language_Basics_3.pdb
