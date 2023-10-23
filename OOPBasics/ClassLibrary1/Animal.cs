@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ClassLibrary1
 {
@@ -13,6 +14,7 @@ namespace ClassLibrary1
         public decimal _inaltime;
 
 
+        public static int AnimalCount;
 
 
         //properties
@@ -62,10 +64,11 @@ namespace ClassLibrary1
 
         }
 
-        private List<Mancare> Stomac { get; set; }
+        public List<Mancare> Stomac { get; set; }
 
 
-        Animal(string name, decimal greutate, decimal viteza, decimal lungime, decimal latime, decimal inaltime)
+        //constructor
+        public Animal(string name, decimal greutate, decimal viteza, decimal lungime, decimal latime, decimal inaltime)
         {
             _name = name;
             _greutate = greutate;
@@ -73,6 +76,74 @@ namespace ClassLibrary1
             _lungime = lungime;
             _latime = latime;
             _inaltime = inaltime;
+        }
+
+
+        //methods
+        public void Mananca(Mancare m, Animal animal)
+        {
+            if (animal.GetType() == typeof(Carnivor))
+            {
+                Carnivor carnivor = (Carnivor)animal;
+
+                if (m.GetType() == typeof(Carne))
+                {
+                    Carne carne = (Carne)m;
+                    if (carne.Greutate < (carnivor.Greutate / 8))
+                    {
+                        carnivor.Stomac.Add(carne);
+                        Console.WriteLine($"{carnivor.Name} mananca");
+                    }
+                }
+            }
+            else if (animal.GetType() == typeof(Omnivor))
+            {
+                Omnivor omnivor = (Omnivor)animal;
+                if (m.GetType() == typeof(Planta))
+                {
+                    Planta planta = (Planta)m;
+                    if (planta.Greutate < (omnivor.Greutate / 8))
+                    {
+                        omnivor.Stomac.Add(planta);
+                        Console.WriteLine($"{omnivor.Name} mananca");
+                    }
+                }
+                else if (m.GetType() == typeof(Carne))
+                {
+                    Carne carne = (Carne)m;
+                    if (carne.Greutate < (omnivor.Greutate / 8))
+                    {
+                        omnivor.Stomac.Add(carne);
+                        Console.WriteLine($"{omnivor.Name} mananca");
+                    }
+                }
+            }
+            else if (animal.GetType() == typeof(Erbivor))
+            {
+                Erbivor erbivor = (Erbivor)animal;
+                if (m.GetType() == typeof(Planta))
+                {
+                    Planta planta = (Planta)m;
+                    if (planta.Greutate < (erbivor.Greutate / 8))
+                    {
+                        erbivor.Stomac.Add(planta);
+                        Console.WriteLine($"{erbivor.Name} mananca");
+                    }
+                }
+
+            }
+
+
+
+
+        }
+        public abstract double Energie<T>(T obj) where T : Animal;
+
+        public void Alearga(decimal distanta, Animal animal)
+        {
+            double timp = (double)distanta / ((double)animal.Viteza / animal.Energie(animal));
+
+            Console.WriteLine($"{timp:F2} secunde is unui {animal.Name} sa alerge distanta de {distanta} metri");
         }
     }
 }
