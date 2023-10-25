@@ -7,18 +7,22 @@
 
         }
 
-        public override double Energie<T>(T obj)
+        public override double Energie()
         {
-            if (obj.GetType() == typeof(Carnivor))
+            if (this.GetType() == typeof(Carnivor))
             {
-                Carnivor temp = obj as Carnivor;
+                Carnivor temp = this as Carnivor;
                 double mediaGreutateMancare = 0;
                 double sumaEnergiaMancare = 0;
 
                 foreach (Mancare food in temp.Stomac)
                 {
-                    mediaGreutateMancare += (double)food.Greutate;
-                    sumaEnergiaMancare += (double)food.Energie;
+                    if (food.GetType() == typeof(Carne))
+                    {
+                        mediaGreutateMancare += (double)food.Greutate;
+                        sumaEnergiaMancare += (double)food.Energie;
+                    }
+
                 }
                 mediaGreutateMancare /= temp.Stomac.Count;
                 double nivelulDeEnergie = 0.2 - 1 / 5 * mediaGreutateMancare + sumaEnergiaMancare;

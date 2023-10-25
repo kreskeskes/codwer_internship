@@ -4,20 +4,20 @@ namespace ClassLibrary1
 {
     public abstract class Mancare
     {
-        public decimal energie_field;
-        public decimal Greutate { get; set; }
+        private decimal _energie;
+        private decimal _greutate { get; set; }
 
         public decimal Energie
         {
             get
             {
-                return energie_field;
+                return _energie;
             }
             set
             {
                 if (value >= 0m && value <= 0.05m)
                 {
-                    energie_field = value;
+                    _energie = value;
                 }
                 else
                 {
@@ -25,5 +25,17 @@ namespace ClassLibrary1
                 }
             }
         }
+        public decimal Greutate
+        {
+            get
+            {
+                return _greutate;
+            }
+            set
+            {
+                _greutate = value;
+            }
+        }
+
     }
 }

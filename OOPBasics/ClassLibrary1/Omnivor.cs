@@ -6,11 +6,11 @@
         {
         }
 
-        public override double Energie<T>(T obj)
+        public override double Energie()
         {
-            if (obj.GetType() == typeof(Omnivor))
+            if (this.GetType() == typeof(Omnivor))
             {
-                Omnivor temp = obj as Omnivor;
+                Omnivor temp = this as Omnivor;
                 double mediaGreutateMancare = 0;
                 double sumaEnergiaMancare = 0;
                 double coef = 0;

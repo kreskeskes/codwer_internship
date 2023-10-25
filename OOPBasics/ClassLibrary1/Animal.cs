@@ -6,12 +6,13 @@ namespace ClassLibrary1
     public abstract class Animal
     {
         //fileds
-        public string _name;
-        public decimal _greutate;
-        public decimal _viteza;
-        public decimal _latime;
-        public decimal _lungime;
-        public decimal _inaltime;
+        private string _name;
+        private decimal _greutate;
+        private decimal _viteza;
+        private decimal _latime;
+        private decimal _lungime;
+        private decimal _inaltime;
+
 
 
         public static int AnimalCount;
@@ -30,7 +31,7 @@ namespace ClassLibrary1
             }
         }
 
-        public decimal Greutate
+        private protected decimal Greutate
         {
             get
             {
@@ -42,9 +43,41 @@ namespace ClassLibrary1
             }
         }
 
+        private decimal Latime
+        {
+            get
+            {
+                return _latime;
+            }
+            set
+            {
+                _latime = value;
+            }
+        }
+        private decimal Lungime
+        {
+            get
+            {
+                return _lungime;
+            }
+            set
+            {
+                _lungime = value;
+            }
+        }
+        private decimal Inaltime
+        {
+            get
+            {
+                return _inaltime;
+            }
+            set
+            {
+                _inaltime = value;
+            }
+        }
 
-
-        public decimal Viteza
+        private protected decimal Viteza
         {
             get
             {
@@ -64,7 +97,7 @@ namespace ClassLibrary1
 
         }
 
-        public List<Mancare> Stomac { get; set; }
+        private protected List<Mancare> Stomac { get; set; }
 
 
         //constructor
@@ -79,12 +112,17 @@ namespace ClassLibrary1
         }
 
 
+
         //methods
-        public void Mananca(Mancare m, Animal animal)
+        public void Mananca(Mancare m)
         {
-            if (animal.GetType() == typeof(Carnivor))
+            if (this.Stomac == null)
             {
-                Carnivor carnivor = (Carnivor)animal;
+                this.Stomac = new List<Mancare>();
+            }
+            if (this.GetType() == typeof(Carnivor))
+            {
+                Carnivor carnivor = (Carnivor)this;
 
                 if (m.GetType() == typeof(Carne))
                 {
@@ -96,9 +134,9 @@ namespace ClassLibrary1
                     }
                 }
             }
-            else if (animal.GetType() == typeof(Omnivor))
+            else if (this.GetType() == typeof(Omnivor))
             {
-                Omnivor omnivor = (Omnivor)animal;
+                Omnivor omnivor = (Omnivor)this;
                 if (m.GetType() == typeof(Planta))
                 {
                     Planta planta = (Planta)m;
@@ -118,9 +156,9 @@ namespace ClassLibrary1
                     }
                 }
             }
-            else if (animal.GetType() == typeof(Erbivor))
+            else if (this.GetType() == typeof(Erbivor))
             {
-                Erbivor erbivor = (Erbivor)animal;
+                Erbivor erbivor = (Erbivor)this;
                 if (m.GetType() == typeof(Planta))
                 {
                     Planta planta = (Planta)m;
@@ -137,13 +175,20 @@ namespace ClassLibrary1
 
 
         }
-        public abstract double Energie<T>(T obj) where T : Animal;
 
-        public void Alearga(decimal distanta, Animal animal)
+        public abstract double Energie();
+
+        public void Alearga(decimal distanta)
         {
-            double timp = (double)distanta / ((double)animal.Viteza / animal.Energie(animal));
+            double timp = (double)distanta / ((double)this.Viteza / this.Energie());
 
-            Console.WriteLine($"{timp:F2} secunde is unui {animal.Name} sa alerge distanta de {distanta} metri");
+            Console.WriteLine($"{timp:F2} secunde is unui {this.Name} sa alerge distanta de {distanta} metri");
+        }
+
+        public override string ToString()
+        {
+
+            return $"\nTip Animal: {this.GetType().Name}\nAnimal: {Name}, \n{Greutate} kg, \nDimensiuni: L {this.Lungime}, I {this.Inaltime}, l {this.Latime} ";
         }
     }
 }
